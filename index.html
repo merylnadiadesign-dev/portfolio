@@ -1344,10 +1344,10 @@
       <span class="login-logo-name">Meryl OS</span>
     </div>
     <div class="login-title">Sign in</div>
-    <div class="login-sub">Access the portfolio workspace.</div>
+    <div class="login-sub">Access Meryl Nadia portfolio</div>
     <div class="field">
-      <label>Email address</label>
-      <input type="email" id="login-email" placeholder="you@company.com" value="Enter email" />
+      <label>Your name (optional)</label>
+      <input type="text" id="login-name" placeholder="What should we call you?" />
     </div>
     <div class="field">
       <label>Password</label>
@@ -1358,7 +1358,7 @@
       <hr /><span>or</span><hr />
     </div>
     <button class="btn-demo" onclick="doLogin()">Continue as guest</button>
-    <div class="login-footer">By signing in you agree to the Terms & Conditions</div>
+    <div class="login-footer">By signing in you agree to the <span class="terms">Terms & Conditions</span></div>
   </div>
 </div>
 
@@ -1435,6 +1435,7 @@
     <div class="main-content">
 
       <!-- ────────── DASHBOARD ────────── -->
+     <h2 id="welcome-text">Welcome</h2>
       <div class="section active" id="sec-dashboard">
         <div class="intro-card">
           <div class="intro-eyebrow">Senior UI/UX Designer · Available for projects</div>
@@ -1697,7 +1698,23 @@
 // ══════════════════════════════════════════════════════════════════════════
 // DATA
 // ══════════════════════════════════════════════════════════════════════════
+ 
+ function setWelcomeText() {
+  const name = localStorage.getItem('name');
+  const el = document.getElementById('welcome-text');
 
+  if (!el) return; // safety
+
+  if (name && name.trim() !== "") {
+    el.innerText = `Welcome, ${name}`;
+  } else {
+    el.innerText = `Welcome back`;
+  }
+}
+ 
+window.onload = function () {
+  setWelcomeText();
+};
 const PROJECTS = [
   { id:'nexus',    dot:'#22C55E', name:'Nexus Analytics Platform', type:'Enterprise', role:'Lead Designer', impact:'61% drop in time-to-insight', status:'Completed',  year:'2023' },
   { id:'meridian', dot:'#3B82F6', name:'Meridian Operations Hub',  type:'SaaS',       role:'Lead Designer', impact:'Adopted by 12 enterprise clients', status:'Completed', year:'2022' },
@@ -1784,10 +1801,24 @@ let currentFilter = 'all';
 // ══════════════════════════════════════════════════════════════════════════
 
 function doLogin() {
+  // ✅ get name from input
+  const nameInput = document.getElementById('login-name')?.value;
+
+  // ✅ save if exists
+  if (nameInput && nameInput.trim() !== "") {
+    localStorage.setItem('name', nameInput.trim());
+  }
+
+  // ✅ switch pages (your existing logic)
   document.getElementById('login-page').classList.remove('active');
   document.getElementById('app-page').classList.add('active');
+
+  // ✅ render existing content
   renderProjects('all');
   renderCaseStudies();
+
+  // ✅ set welcome text
+  setWelcomeText();
 }
 
 function doLogout() {
