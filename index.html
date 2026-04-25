@@ -1344,20 +1344,19 @@
       <span class="login-logo-name">Meryl OS</span>
     </div>
     <div class="login-title">Sign in</div>
-    <div class="login-sub">Access Meryl Nadia portfolio</div>
     <div class="field">
-      <label>Your name (optional)</label>
+      <label>Name</label>
       <input type="text" id="login-name" placeholder="What should we call you?" />
     </div>
     <div class="field">
       <label>Password</label>
       <input type="password" id="login-pass" placeholder="••••••••" value="••••••••" />
     </div>
-    <button class="btn-primary" onclick="doLogin()">Sign in →</button>
+    <button class="btn-primary" onclick="doLogin(false)"> Enter workspace → </button>
     <div class="login-divider">
       <hr /><span>or</span><hr />
     </div>
-    <button class="btn-demo" onclick="doLogin()">Continue as guest</button>
+    <button class="btn-demo" onclick="doLogin(true)"> Continue as guest </button>
     <div class="login-footer">By signing in you agree to the <span class="terms">Terms & Conditions</span></div>
   </div>
 </div>
@@ -1403,10 +1402,10 @@
 
     <div class="sidebar-footer">
       <div class="user-row">
-        <div class="user-avatar">AK</div>
+        <div class="user-avatar">MN</div>
         <div>
-          <div class="user-name">Alex Kim</div>
-          <div class="user-role">Senior Product Designer</div>
+          <div class="user-name">Meryl Nadia</div>
+          <div class="user-role">Senior UI/UX Designer</div>
         </div>
       </div>
       <div class="nav-item mt-8" onclick="doLogout()" style="color: var(--text-muted)">
@@ -1420,7 +1419,7 @@
   <div class="main-wrap">
     <div class="topbar">
       <div class="topbar-breadcrumb">
-        <span>Design OS</span>
+        <span>Meryl OS</span>
         <span class="sep">/</span>
         <span class="current" id="breadcrumb-current">Dashboard</span>
       </div>
@@ -1435,7 +1434,10 @@
     <div class="main-content">
 
       <!-- ────────── DASHBOARD ────────── -->
-     <h2 id="welcome-text">Welcome</h2>
+     <div class="dashboard-header">
+        <h2 id="welcome-text">Welcome</h2>
+      <p class="welcome-sub">Get to know Meryl’s work and systems</p>
+     </div>
       <div class="section active" id="sec-dashboard">
         <div class="intro-card">
           <div class="intro-eyebrow">Senior UI/UX Designer · Available for projects</div>
@@ -1818,6 +1820,27 @@ function doLogin() {
   renderCaseStudies();
 
   // ✅ set welcome text
+  setWelcomeText();
+}
+
+ function doLogin(isGuest) {
+  if (!isGuest) {
+    const nameInput = document.getElementById('login-name')?.value;
+
+    if (nameInput && nameInput.trim() !== "") {
+      localStorage.setItem('name', nameInput.trim());
+    }
+  } else {
+    // 👇 clear name if guest
+    localStorage.removeItem('name');
+  }
+
+  document.getElementById('login-page').classList.remove('active');
+  document.getElementById('app-page').classList.add('active');
+
+  renderProjects('all');
+  renderCaseStudies();
+
   setWelcomeText();
 }
 
