@@ -870,6 +870,7 @@ function buildOverview(){
   el.innerHTML=`
 
     <!-- §1 HERO -->
+    <div class="ov-id-card">
     <div class="ov-hero">
       <div class="ov-hero-text">
         <div class="ov-avail-badge"><span class="ov-avail-dot"></span>Available for Opportunities</div>
@@ -902,37 +903,7 @@ function buildOverview(){
           </a>
         </div>
       </div>
-
-      <!-- Signature identity card -->
-      <div class="ov-id-card">
-        <div class="ov-id-card-avatar">MN</div>
-        <div class="ov-id-card-name">Meryl Nadia</div>
-        <div class="ov-id-card-title">SENIOR PRODUCT DESIGNER</div>
-        <div class="ov-id-card-divider"></div>
-        <div class="ov-id-card-row">
-          <span class="ov-id-card-key">Location</span>
-          <span class="ov-id-card-val">KL, MY</span>
-        </div>
-        <div class="ov-id-card-row">
-          <span class="ov-id-card-key">Experience</span>
-          <span class="ov-id-card-val">4+ years</span>
-        </div>
-        <div class="ov-id-card-row">
-          <span class="ov-id-card-key">Focus</span>
-          <span class="ov-id-card-val">Enterprise</span>
-        </div>
-        <div class="ov-id-card-row">
-          <span class="ov-id-card-key">Stack</span>
-          <span class="ov-id-card-val">Figma · Web · Mobile</span>
-        </div>
-        <div class="ov-id-card-status">
-          <div class="ov-id-status-dot"></div>
-          Open to Roles
-        </div>
       </div>
-    </div>
-
-    <div class="ov-divider"></div>
 
     <!-- §2 FEATURED PROJECTS -->
     <div class="ov-section-label">Featured Work</div>
@@ -960,8 +931,6 @@ function buildOverview(){
       `).join('')}
     </div>
 
-    <div class="ov-divider"></div>
-
     <!-- §3 EXPERTISE -->
     <div class="ov-section-label">Areas of Expertise</div>
     <div class="exp-grid">
@@ -982,8 +951,6 @@ function buildOverview(){
         </div>
       `).join('')}
     </div>
-
-    <div class="ov-divider"></div>
 
     <!-- §4 EXPERIENCE -->
     <div class="ov-section-label">Work Experience</div>
@@ -1016,8 +983,6 @@ function buildOverview(){
       `).join('')}
     </div>
 
-    <div class="ov-divider"></div>
-
     <!-- §5 PROCESS — lightweight -->
     <div class="ov-section-label">Design Process</div>
     <div class="proc-row">
@@ -1030,7 +995,6 @@ function buildOverview(){
       `).join('')}
     </div>
 
-    <div class="ov-divider"></div>
 
     <!-- §6 CURRENT FOCUS -->
     <div class="ov-section-label">Current Focus</div>
